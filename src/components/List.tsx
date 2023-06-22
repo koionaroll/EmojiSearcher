@@ -1,18 +1,16 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 
 function List({ list }) {
   return (
     <>
-      <div>
-        {list.map((el) => {
-          //note to fix " unique key" bug, maybe map to index?
-          return (
-            <>
-              <div>{el}</div>
-            </>
-          );
-        })}
-      </div>
+      {list.map((el) => {
+        return (
+          <>
+            <div key={uuidv4()}>{el}</div>
+          </>
+        );
+      })}
     </>
   );
 }

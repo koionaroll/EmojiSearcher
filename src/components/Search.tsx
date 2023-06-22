@@ -21,9 +21,9 @@ function Search({ apiKey, apiUrl }) {
   // on submit, make get request to fetch data given emoji name and save it to "list", iterating on said list with each new entry
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     axios
-      .get(apiUrl + value + apiKey)
+      .get(`${apiUrl}/${value}${apiKey}`)
       .then((res) => {
         if (res.data && res.data.length > 0) {
           setShowErr(false);

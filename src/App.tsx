@@ -4,12 +4,12 @@ import "./App.css"
 
 function App() {
   const apiKey = `?access_key=${import.meta.env.VITE_API_KEY}`;
-  const apiUrl = "https://emoji-api.com/emojis/";
+  const apiUrl = "https://emoji-api.com/emojis";
 
   
   return(
   <>
-    <Title />
+    <Title apiKey={apiKey} apiUrl={apiUrl}/>
     <Search apiKey={apiKey} apiUrl={apiUrl}/>
   </>);
 }
