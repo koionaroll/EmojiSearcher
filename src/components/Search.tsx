@@ -23,7 +23,7 @@ function Search({ apiKey, apiUrl }) {
     e.preventDefault();
 
     axios
-      .get(`${apiUrl}/${value}${apiKey}`)
+      .get(`${apiUrl}/${value}${apiKey}`) // ------------ REFACTORING HERE 
       .then((res) => {
         if (res.data && res.data.length > 0) {
           setShowErr(false);
