@@ -3,7 +3,7 @@ import { useState } from "react";
 import List from "./List";
 import axios from "axios";
 
-function Search({ apiKey, apiUrl }) {
+function Search({ apiUrl }) {
   //value of emoji searched by user
   const [value, setValue] = useState("");
 
@@ -18,17 +18,17 @@ function Search({ apiKey, apiUrl }) {
     setValue(e.target.value);
   };
 
-  // on submit, make get request to fetch data given emoji name and save it to "list", iterating on said list with each new entry
+  // on submit, make get request to fetch data given emote name and save it to "list", iterating on said list with each new entry
   const handleSubmit = (e) => {
     e.preventDefault();
 
     axios
-      .get(`${apiUrl}/${value}${apiKey}`) // ------------ REFACTORING HERE 
+      .get(`${apiUrl}${value}`)
       .then((res) => {
         if (res.data && res.data.length > 0) {
           setShowErr(false);
           setList((prev) => {
-            return [...prev, res.data[0].character];
+            return [...prev, res.data];
           });
         } else {
           // Handle the case when res.data is null or empty
@@ -48,14 +48,16 @@ function Search({ apiKey, apiUrl }) {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
+          style={{width:"20rem"}}
           onChange={handleChange}
           value={value}
+          placeholder="Search Emote Here, Press Enter to Submit"
           //pressing "enter" submits form
           onKeyDown={(e) => {
             e.key === "Enter" ? handleSubmit : null;
           }}
         />
-        {/* <button onClick={handleSubmit}>Submit</button> */}
+        <button onClick={handleSubmit}>Submit</button>
       </form>
       {showErr ? "invalid entry" : null }
       <List list={list} />
