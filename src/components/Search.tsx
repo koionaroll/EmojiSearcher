@@ -37,6 +37,7 @@ function Search({ apiUrl }) {
       })
       .catch((error) => {
         console.error(error);
+        setShowErr(true);
       });
 
     // Empties input field on each submission
